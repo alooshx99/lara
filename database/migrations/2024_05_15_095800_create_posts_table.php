@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('image_url')->nullable();
             $table->unsignedBigInteger('likes')->default(0);
             $table->timestamp('published_at')->nullable();
-            $table->timestamps();
+           // $table->timestamps();
         });
     }
 
