@@ -15,7 +15,7 @@ Route::post('/register', function (Request $request) {
 
 
 Route::get('/posts', function (Request $request) {
-    $data = DB::table('posts')->get();
+    $data = DB::table('posts')->get();//test
 
     return response()->json($data)->setStatusCode(200);
 });
