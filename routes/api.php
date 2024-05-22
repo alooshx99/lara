@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -10,22 +13,21 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
 Route::post('/register', function (Request $request) {
- //   $username = $request->get('username');
-   // $password = $request->get('password');
     return Response::json($request->all())->setStatusCode(201);
-
-
 });
 
 
-Route::get('/posts', function (Request $request) {
 
-    $startDate = Carbon::createFromDate($request->get('start_Date'))->getTimestampMs();
-    $endDate  = Carbon::createFromDate($request->get('end_Date'))->getTimestampMs();
+Route::get('/posts',[PostController::class, 'index']);
+Route::get('/posts/{post}',[PostController::class, 'show']);
+Route::post('/posts',[PostController::class, 'store']);
+Route::patch('/posts/{post}',[PostController::class, 'update']);
+Route::delete('/posts/{post}',[PostController::class, 'destroy']);
 
-    $data = DB::table('posts')->whereBetween('published_at', [$startDate,$endDate])->get();
 
-    return response()->json($data)->setStatusCode(200);
-});
+Route::apiResource('/categories',CategoryController::class);
+
+
+
+
