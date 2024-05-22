@@ -27,7 +27,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $attributes = request()->validate([
-            'title' => ['required', 'string','unique:posts', 'min:10' , 'max:255'],
+            'title' => ['required', 'string','unique:posts', 'min:3' , 'max:255'],
             'description' => ['required', 'string', 'min:10' , 'max:255'],
             'image_url' => ['nullable', 'string', ''],
             'published_at' => ['nullable','sometimes' ,'date'],

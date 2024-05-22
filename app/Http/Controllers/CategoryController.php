@@ -24,7 +24,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $attributes = request()->validate([
-            'title' => ['required', 'string','unique:posts', 'min:10' , 'max:255'],
+            'title' => ['required', 'string','unique:posts', 'min:3' , 'max:255'],
         ]);
         $post = Category::create($attributes);
 
